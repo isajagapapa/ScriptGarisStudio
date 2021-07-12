@@ -1,19 +1,29 @@
 <?php
-    $server = "localhost";
-    $user = "root";
-    $namadb = "garisstudio";
-    $password = "";
+//deklarasi alamat server
+$server = "localhost";
 
-    $conn = mysqli_connect($server, $user, $password, $namadb) or die ("Koneksi Gagal");
+//deklarasi username
+$user = "root";
 
-    $result = mysqli_query($conn, "select * from gaji_karyawan");
+//deklarasi nama database
+$namadb = "garisstudio";
 
-    $json = array();
+//deklarasi password database
+$password = "";
 
-    while ($row = mysqli_fetch_assoc($result)){
-        $json[] = $row;
-    }
+//membuat koneksi dalam database
+$conn = mysqli_connect($server, $user, $password, $namadb) or die("Koneksi Gagal");
 
-    echo json_encode($json);
-    mysqli_close($conn);
-?>
+//menjalankan query untuk menampilkan data
+$result = mysqli_query($conn, "select * from gaji_karyawan");
+
+//mebuat variabel json yang berjenis data array
+$json = array();
+
+//membaca isi data dari database
+while ($row = mysqli_fetch_assoc($result)) {
+    $json[] = $row;
+}
+
+echo json_encode($json);
+mysqli_close($conn);
